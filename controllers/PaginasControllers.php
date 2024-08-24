@@ -53,11 +53,11 @@ class PaginasControllers{
 
             //Configurar SMTP
             $phpmailer->isSMTP();
-            $phpmailer->Host = EMAIL_HOST;
+            $phpmailer->Host = $_ENV['EMAIL_HOST'];
             $phpmailer->SMTPAuth = true;
-            $phpmailer->Port = EMAIL_PORT;
-            $phpmailer->Username = EMAIL_USER;
-            $phpmailer->Password = EMAIL_PASS;
+            $phpmailer->Port = $_ENV['EMAIL_PORT'];
+            $phpmailer->Username = $_ENV['EMAIL_USER'];
+            $phpmailer->Password = $_ENV['EMAIL_PASS'];
 
             //Configurar el contenido del email
             $phpmailer->setFrom('admin@bienesraices.com');
