@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 require '../vendor/autoload.php';
 
 class PaginasControllers{
+
     public static function index(Router $router){
         $propiedades = Propiedad::getCantPropiedades(3);
         $inicio = true;
@@ -52,11 +53,11 @@ class PaginasControllers{
 
             //Configurar SMTP
             $phpmailer->isSMTP();
-            $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+            $phpmailer->Host = EMAIL_HOST;
             $phpmailer->SMTPAuth = true;
-            $phpmailer->Port = 2525;
-            $phpmailer->Username = 'daa35bf9657225';
-            $phpmailer->Password = 'ac731d339055ae';
+            $phpmailer->Port = EMAIL_PORT;
+            $phpmailer->Username = EMAIL_USER;
+            $phpmailer->Password = EMAIL_PASS;
 
             //Configurar el contenido del email
             $phpmailer->setFrom('admin@bienesraices.com');
@@ -95,6 +96,7 @@ class PaginasControllers{
                 $mensaje = "El mensaje no se pudo enviar";
             }
         }
+        
         $router->render('paginas/contacto',[
             'mensaje' => $mensaje
         ]);

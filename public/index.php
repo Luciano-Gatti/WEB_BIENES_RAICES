@@ -41,5 +41,4 @@ $router->get('/login', [LoginControllers::class, 'login']);
 $router->post('/login', [LoginControllers::class, 'login']);
 $router->get('/logout', [LoginControllers::class, 'logout']);
 
-
 $router->comprobarRutas();
