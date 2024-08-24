@@ -1,6 +1,6 @@
 <?php
     use App\Propiedad;
-    if($_SERVER["SCRIPT_NAME"] === '/anuncios.php'){
+    if($_SERVER["SCRIPT_NAME"] === '/anuncios'){
         $propiedades = Propiedad::all();
     }else{
         $propiedades = Propiedad::getCantPropiedades(3);
