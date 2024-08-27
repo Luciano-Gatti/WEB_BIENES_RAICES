@@ -2,7 +2,9 @@
 namespace Controllers;
 use MVC\Router;
 use Model\Propiedad;
-use PHPMailer\PHPMailer\PHPMailer;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
 require '../vendor/autoload.php';
 
 class PaginasControllers{
@@ -48,25 +50,21 @@ class PaginasControllers{
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $respuestas = $_POST['contacto'];
 
-            //Crear una instancia de PHPMailer
-            $phpmailer = new PHPMailer();
+            // Crear el transporte para Gmail
+            // Asegúrate de codificar la contraseña y otros valores si es necesario
+            $emailUser = $_ENV['EMAIL_USER'];
+            $emailPass = $_ENV['EMAIL_PASS']; // Codificación de la contraseña
+            $emailSmtp = $_ENV['EMAIL_SMTP'];
+            $emailPort = $_ENV['EMAIL_PORT'];
 
-            //Configurar SMTP
-            $phpmailer->isSMTP();
-            $phpmailer->Host = $_ENV['EMAIL_HOST'];
-            $phpmailer->SMTPAuth = true;
-            $phpmailer->Port = $_ENV['EMAIL_PORT'];
-            $phpmailer->Username = $_ENV['EMAIL_USER'];
-            $phpmailer->Password = $_ENV['EMAIL_PASS'];
+            // Construcción del DSN
+            $dsn = sprintf('smtp://%s:%s@%s:%s', $emailUser, $emailPass, $emailSmtp, $emailPort);
 
-            //Configurar el contenido del email
-            $phpmailer->setFrom('admin@bienesraices.com');
-            $phpmailer->addAddress('admin@bienesraices.com', 'BienesRaices.com');
-            $phpmailer->Subject = 'Tienes un Nuevo Mensaje';
+            // Crear el transporte de correo
+            $transport = Transport::fromDsn($dsn);
 
-            //Habilitar HTML
-            $phpmailer->isHTML(true);
-            $phpmailer->CharSet = 'UTF-8';
+            // Crear el Mailer usando el transporte
+            $mailer = new Mailer($transport);
 
             //Definir el contenido
             $contenido = '<html>';  
@@ -86,11 +84,17 @@ class PaginasControllers{
             $contenido .= '<p>Precio o Presupuesto: $'. $respuestas['precio'].'</p>';
             $contenido .= '</html>';
 
-            $phpmailer->Body = $contenido;
-            $phpmailer->AltBody = 'Esto es texto alternativo sin HTML';
+            // Crear el mensaje
+            $email = (new Email())
+            ->from($_ENV['EMAIL_USER']) // Cambia esto a tu dirección de correo
+            ->to($_ENV['EMAIL_USER'])
+            ->subject('Contacto Propiedad')
+            ->html($contenido);
+
+            debugear(!$mailer->send($email));
 
             //Enviar el email
-            if($phpmailer->send()){
+            if(!$mailer->send($email)){
                 $mensaje = "Mensaje enviado correctamente";
             }else{
                 $mensaje = "El mensaje no se pudo enviar";

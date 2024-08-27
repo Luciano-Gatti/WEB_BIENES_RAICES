@@ -29,7 +29,7 @@
                     <p><?php echo $propiedad-> habitaciones; ?></p>
                 </li>
             </ul>
-            <a href="anuncio.php?id=<?php echo $propiedad-> id; ?>" class="boton-amarillo-block">
+            <a href="/anuncio?id=<?php echo $propiedad-> id; ?>" class="boton-amarillo-block">
                 Ver Propiedad
             </a>
         </div> <!--contenido-anuncio-->    

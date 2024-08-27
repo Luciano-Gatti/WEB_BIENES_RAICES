@@ -37,6 +37,7 @@
             </a>
         </div>
     </article><!--2da entrada de blog-->
+    
     <article class="entrada-blog">
         <div class="imagen">
             <picture>
