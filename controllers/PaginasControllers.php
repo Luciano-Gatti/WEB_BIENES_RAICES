@@ -60,7 +60,6 @@ class PaginasControllers{
             // Construcción del DSN
             $dsn = sprintf('smtp://%s:%s@%s:%s', $emailUser, $emailPass, $emailSmtp, $emailPort);
 
-            debuguear($dsn);
             // Crear el transporte de correo
             $transport = Transport::fromDsn($dsn);
 
