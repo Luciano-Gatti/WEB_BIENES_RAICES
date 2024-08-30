@@ -60,7 +60,6 @@ class PaginasControllers{
             // Construcción del DSN
             $dsn = sprintf('smtp://%s:%s@%s:%s', $emailUser, $emailPass, $emailSmtp, $emailPort);
 
-            debuguear($dsn);
             // Crear el transporte de correo
             $transport = Transport::fromDsn($dsn);
 
@@ -93,10 +92,11 @@ class PaginasControllers{
             ->html($contenido);
 
             //Enviar el email
-            if(!$mailer->send($email)){
+            try {
+                $mailer->send($email);
                 $mensaje = "Mensaje enviado correctamente";
-            }else{
-                $mensaje = "El mensaje no se pudo enviar";
+            } catch (\Symfony\Component\Mailer\Exception\TransportExceptionInterface $e) {
+                $mensaje = "Error al enviar el mensaje: " . $e->getMessage();
             }
         }
         
