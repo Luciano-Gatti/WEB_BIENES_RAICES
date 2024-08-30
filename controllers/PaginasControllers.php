@@ -91,8 +91,6 @@ class PaginasControllers{
             ->subject('Contacto Propiedad')
             ->html($contenido);
 
-            debugear(!$mailer->send($email));
-
             //Enviar el email
             if(!$mailer->send($email)){
                 $mensaje = "Mensaje enviado correctamente";
