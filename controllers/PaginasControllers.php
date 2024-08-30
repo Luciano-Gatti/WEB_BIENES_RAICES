@@ -91,7 +91,13 @@ class PaginasControllers{
             ->subject('Contacto Propiedad')
             ->html($contenido);
 
-            $mailer->send($email);
+            //Enviar el email
+            try {
+                $mailer->send($email);
+                $mensaje = "Mensaje enviado correctamente";
+            } catch (\Symfony\Component\Mailer\Exception\TransportExceptionInterface $e) {
+                $mensaje = "Error al enviar el mensaje: " . $e->getMessage();
+            }
         }
         
         $router->render('paginas/contacto',[
