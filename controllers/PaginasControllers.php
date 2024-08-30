@@ -53,13 +53,14 @@ class PaginasControllers{
             // Crear el transporte para Gmail
             // Asegúrate de codificar la contraseña y otros valores si es necesario
             $emailUser = $_ENV['EMAIL_USER'];
-            $emailPass = $_ENV['EMAIL_PASS']; // Codificación de la contraseña
+            $emailPass = $_ENV['EMAIL_PASS']; 
             $emailSmtp = $_ENV['EMAIL_SMTP'];
             $emailPort = $_ENV['EMAIL_PORT'];
 
             // Construcción del DSN
             $dsn = sprintf('smtp://%s:%s@%s:%s', $emailUser, $emailPass, $emailSmtp, $emailPort);
 
+            debuguear($dsn);
             // Crear el transporte de correo
             $transport = Transport::fromDsn($dsn);
 
