@@ -1,12 +1,11 @@
-# Salón de Peluquería - Sistema de Reservas
+# Bienes Raíces - Sistema de Gestión de Propiedades
 
-Este proyecto es una página web diseñada para un salón de peluquería que permite a los clientes reservar citas en línea y a los administradores gestionar los servicios y las citas creadas.
+Este proyecto es una aplicación web diseñada para gestionar propiedades inmobiliarias. Permite a los usuarios buscar propiedades, ver detalles y a los administradores gestionar el inventario de propiedades.
 
 ## Características
 
-- **Reservas de Citas:** Los clientes pueden reservar citas en línea seleccionando el servicio deseado, la fecha y la hora conveniente.
-- **Administración de Servicios:** Los administradores pueden agregar, editar y eliminar servicios ofrecidos por el salón de peluquería.
-- **Administración de Citas:** Los administradores pueden ver todas las citas programadas, editar detalles y cancelar citas según sea necesario.
+- **Visualización de Detalles:** Los clientes pueden reservar citas en línea seleccionando el servicio deseado, la fecha y la hora conveniente.
+- **Gestión de Propiedades:** Los administradores pueden agregar, editar y eliminar propiedades, así como gestionar la información de contacto de los vendedores.
 
 ## Tecnologías Utilizadas
 
@@ -40,4 +39,4 @@ Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
 ## Créditos
 
-Este proyecto fue creado por [Luciano Emmanuel Gatti Flekenstein]. ¡Gracias a todos los contribuyentes!
+Este proyecto fue creado por [Luciano Emmanuel Gatti Flekenstein].
